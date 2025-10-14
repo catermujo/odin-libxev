@@ -15,7 +15,6 @@ main :: proc() {
     }
     defer xev.loop_deinit(&loop)
 
-
     w: xev.Watcher
     if (xev.timer_init(&w) != 0) {
         fmt.println("timer init failed")
@@ -26,10 +25,7 @@ main :: proc() {
     completion: xev.Completion
     xev.timer_run(&w, &loop, &completion, 5000, nil, on_timer)
     xev.loop_run(&loop, .until_done)
-
-
 }
-
 
 on_timer :: proc "c" (loop: ^xev.Loop, comp: ^xev.Completion, result: c.int, userdata: rawptr) -> xev.Action {
     context = runtime.default_context()

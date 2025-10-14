@@ -18,36 +18,35 @@ SIZEOF_THREADPOOL_BATCH: c.size_t : 24
 SIZEOF_THREADPOOL_TASK: c.size_t : 24
 SIZEOF_THREADPOOL_CONFIG: c.size_t : 64
 
-
-ALIGN_T :: i128 // FIXME: is this long double like libxev uses?
+ALIGN_T :: i128 when size_of(uintptr) == 8 else i64
 
 Loop :: struct {
     _pad: ALIGN_T,
-    data: [SIZEOF_LOOP - size_of(ALIGN_T)]u8,
+    data: [SIZEOF_LOOP - size_of(ALIGN_T)]byte,
 }
 Completion :: struct {
     _pad: ALIGN_T,
-    data: [SIZEOF_COMPLETION - size_of(ALIGN_T)]u8,
+    data: [SIZEOF_COMPLETION - size_of(ALIGN_T)]byte,
 }
 Watcher :: struct {
     _pad: ALIGN_T,
-    data: [SIZEOF_WATCHER - size_of(ALIGN_T)]u8,
+    data: [SIZEOF_WATCHER - size_of(ALIGN_T)]byte,
 }
 Threadpool :: struct {
     _pad: ALIGN_T,
-    data: [SIZEOF_THREADPOOL - size_of(ALIGN_T)]u8,
+    data: [SIZEOF_THREADPOOL - size_of(ALIGN_T)]byte,
 }
 Threadpool_Batch :: struct {
     _pad: ALIGN_T,
-    data: [SIZEOF_THREADPOOL_BATCH - size_of(ALIGN_T)]u8,
+    data: [SIZEOF_THREADPOOL_BATCH - size_of(ALIGN_T)]byte,
 }
 Threadpool_Task :: struct {
     _pad: ALIGN_T,
-    data: [SIZEOF_THREADPOOL_TASK - size_of(ALIGN_T)]u8,
+    data: [SIZEOF_THREADPOOL_TASK - size_of(ALIGN_T)]byte,
 }
 Threadpool_Config :: struct {
     _pad: ALIGN_T,
-    data: [SIZEOF_THREADPOOL_CONFIG - size_of(ALIGN_T)]u8,
+    data: [SIZEOF_THREADPOOL_CONFIG - size_of(ALIGN_T)]byte,
 }
 
 Action :: enum c.int {
