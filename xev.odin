@@ -67,10 +67,8 @@ Completion_State :: enum c.int {
     active = 1,
 }
 
-
 @(link_prefix = "xev_")
 foreign lib {
-
     loop_init :: proc "c" (loop: ^Loop) -> c.int ---
 
     loop_deinit :: proc "c" (loop: ^Loop) ---
@@ -105,5 +103,4 @@ foreign lib {
     async_deinit :: proc "c" (w: ^Watcher) ---
     async_notify :: proc "c" (w: ^Watcher) -> c.int ---
     async_wait :: proc "c" (w: ^Watcher, loop: ^Loop, comp: ^Completion, userdata: rawptr, cb: async_cb) ---
-
 }
