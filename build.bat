@@ -2,7 +2,7 @@
 
 setlocal EnableDelayedExpansion
 
-if not exist libxev\NUL (
+if not exist libxev (
     git clone --recurse-submodules https://github.com/mitchellh/libxev --depth=1
 )
 
