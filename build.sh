@@ -2,7 +2,7 @@
 
 set -e
 
-[ -d libxev ] || git clone https://github.com/mitchellh/libxev --depth 1
+[ -d libxev ] || git clone --revision 9b6634b6229be5f2c8fb22db1f6f652bac5c5040 https://github.com/mitchellh/libxev --depth 1
 
 cd libxev
 zvm use 0.15.1
